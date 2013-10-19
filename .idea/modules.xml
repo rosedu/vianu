@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RGTB/RGTB.iml" filepath="$PROJECT_DIR$/RGTB/RGTB.iml" />
       <module fileurl="file://$PROJECT_DIR$/RGTBProject.iml" filepath="$PROJECT_DIR$/RGTBProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vianu.iml" filepath="$PROJECT_DIR$/vianu.iml" />
     </modules>
   </component>
 </project>

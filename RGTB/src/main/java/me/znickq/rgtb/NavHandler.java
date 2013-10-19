@@ -22,6 +22,10 @@ public class NavHandler {
         switch(whichMenu) {
             case 0:
                 return new MainFragment();
+            case 2:
+                return new SMSFragment();
+            case 3:
+                return new ControllerFragment();
             default:
                 throw new UnsupportedOperationException("Wat r u doin");
 
