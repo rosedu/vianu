@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,6 +9,58 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Hello bitches"
+        android:paddingTop="30dp"
+        android:textSize="50sp"
+        android:textColor="@android:color/holo_green_dark"
         android:id="@+id/textView"
-        android:layout_gravity="center" />
-</LinearLayout>
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="60dp"
+        android:text="View Code"
+        android:id="@+id/first_button"
+        android:textSize="25sp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/first_button"
+        android:text="Download Code"
+        android:id="@+id/second_button"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/second_button"
+        android:text="Buy SMS"
+        android:id="@+id/third_button"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="0 Points"
+        android:paddingBottom="30dp"
+        android:textSize="40sp"
+        android:textColor="@android:color/holo_green_light"
+        android:id="@+id/textView2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

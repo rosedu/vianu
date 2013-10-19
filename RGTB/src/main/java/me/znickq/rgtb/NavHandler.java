@@ -10,7 +10,7 @@ import java.util.List;
  * Created by ZNickq on 10/19/13.
  */
 public class NavHandler {
-    private static List<String> navTitlesList = Arrays.asList("Main", "Points", "SMS", "Controllers", "Settings");
+    private static List<String> navTitlesList = Arrays.asList("Main", "Shared", "SMS", "Controllers", "Settings");
 
     public static List<String> getMenusForAdapter() {
         return navTitlesList;
