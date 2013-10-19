@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RGTB/RGTB.iml" filepath="$PROJECT_DIR$/RGTB/RGTB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RGTBProject.iml" filepath="$PROJECT_DIR$/RGTBProject.iml" />
+    </modules>
+  </component>
+</project>
+
