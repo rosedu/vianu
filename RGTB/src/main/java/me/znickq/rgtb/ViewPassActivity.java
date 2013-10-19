@@ -23,7 +23,7 @@ public class ViewPassActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         PassHandler.Pass pass = (PassHandler.Pass) extras.get("pass_to_show");
 
-        tv.setText("RATB: Abonamentul Dvs de 1 zi a fost activat. Valabil azi "+ pass.getFormattedDate() + " pe toate liniile urbane RATB. Va dorim calatorie placuta! Cod confirmare: "+pass.getCode());
+        tv.setText(Util.getSmsFor(pass));
 
 
         TextView tv2 = (TextView) findViewById(R.id.receivedText);

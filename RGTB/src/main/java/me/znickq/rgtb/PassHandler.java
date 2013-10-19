@@ -38,6 +38,10 @@ public class PassHandler {
         }
     }
 
+    public static void clearPass(PassType pt) {
+        loaded.remove(pt);
+    }
+
     public static void obtainPass(Activity ac, PassType pt) {
         if(pt == PassType.NET) {
             loaded.put(PassType.NET, new Pass(PassType.NET, new Date(), "NETCODE"));
@@ -72,6 +76,10 @@ public class PassHandler {
             return loaded.get(PassType.NET);
         }
         return loaded.get(PassType.SMS);
+    }
+
+    public static Pass getPassForToday(PassType toRet) {
+        return loaded.get(toRet);
     }
 
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by ZNickq on 10/19/13.
@@ -19,29 +20,24 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_fragment, container, false);
 
+        TextView tv = (TextView) rootView.findViewById(R.id.textView);
+
         if(PassHandler.getPassForToday() != null) {
-            disableButton(rootView, R.id.second_button);
-            disableButton(rootView, R.id.third_button);
-            setListenerHere(rootView, R.id.first_button);
+            tv.setText("You're good :)");
+            tv.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+            Util.disableButton(rootView, R.id.second_button);
+            Util.disableButton(rootView, R.id.third_button);
+            Util.setListenerHere(rootView, R.id.first_button, this);
         } else {
-            disableButton(rootView, R.id.first_button);
-            setListenerHere(rootView, R.id.second_button);
-            setListenerHere(rootView, R.id.third_button);
+            tv.setText("No pass detected");
+            tv.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            Util.disableButton(rootView, R.id.first_button);
+            Util.setListenerHere(rootView, R.id.second_button, this);
+            Util.setListenerHere(rootView, R.id.third_button, this);
         }
 
         getActivity().setTitle("Main");
         return rootView;
-    }
-
-    private void setListenerHere(View rootView, int id) {
-        Button b = (Button) rootView.findViewById(id);
-        b.setOnClickListener(this);
-    }
-
-    private void disableButton(View rootView, int id) {
-        Button oneButton = (Button) rootView.findViewById(id);
-        oneButton.setClickable(false);
-        oneButton.setVisibility(View.GONE);
     }
 
     @Override
