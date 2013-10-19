@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by user on 10/19/13.
  */
 public class SMSFragment extends Fragment implements View.OnClickListener{
 
+
+    boolean isGood = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,14 +26,18 @@ public class SMSFragment extends Fragment implements View.OnClickListener{
         TextView tv = (TextView) rootView.findViewById(R.id.textView);
 
         if(PassHandler.getPassForToday(PassHandler.PassType.SMS) != null) {
+            isGood = true;
             tv.setText("You're good :)");
             tv.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-            Util.disableButton(rootView, R.id.sms_button);
+            Util.setButtonText(rootView, R.id.sms_button, "View");
+            Util.setListenerHere(rootView, R.id.sms_button, this);
+            Util.setListenerHere(rootView, R.id.net_share_button, this);
             Util.setListenerHere(rootView, R.id.sms_share_button, this);
         } else {
             tv.setText("No pass detected");
             tv.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
             Util.disableButton(rootView, R.id.sms_share_button);
+            Util.disableButton(rootView, R.id.net_share_button);
             Util.setListenerHere(rootView, R.id.sms_button, this);
         }
 
@@ -40,7 +47,17 @@ public class SMSFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        if(v.getId() == R.id.net_share_button) {
+            SettingsFragment.points+=2;
+            Toast.makeText(getActivity().getApplicationContext(), "Thanks for sharing :)", Toast.LENGTH_SHORT).show();
+        }
         if(v.getId() == R.id.sms_button) {
+            if(isGood) {
+                Intent i = new Intent(v.getContext(), ViewPassActivity.class);
+                i.putExtra("pass_to_show",PassHandler.getPassForToday(PassHandler.PassType.SMS));
+                startActivity(i);
+                return;
+            }
             PassHandler.obtainPass(this.getActivity(), PassHandler.PassType.SMS);
         }
         if(v.getId() == R.id.sms_share_button) {

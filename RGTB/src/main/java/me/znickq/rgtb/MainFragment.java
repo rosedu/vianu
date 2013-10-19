@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Date;
+
 /**
  * Created by ZNickq on 10/19/13.
  */
@@ -20,6 +22,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_fragment, container, false);
 
+        Util.updatePoints(this.getActivity(), rootView);
+
         TextView tv = (TextView) rootView.findViewById(R.id.textView);
 
         if(PassHandler.getPassForToday() != null) {
@@ -27,6 +31,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             tv.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
             Util.disableButton(rootView, R.id.second_button);
             Util.disableButton(rootView, R.id.third_button);
+            Util.disableButton(rootView, R.id.forth_button);
             Util.setListenerHere(rootView, R.id.first_button, this);
         } else {
             tv.setText("No pass detected");
@@ -34,6 +39,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             Util.disableButton(rootView, R.id.first_button);
             Util.setListenerHere(rootView, R.id.second_button, this);
             Util.setListenerHere(rootView, R.id.third_button, this);
+            Util.setListenerHere(rootView, R.id.forth_button, this);
         }
 
         getActivity().setTitle("Main");
@@ -54,6 +60,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         }
         if(v.getId() == R.id.third_button) {
             PassHandler.obtainPass(getActivity(), PassHandler.PassType.SMS);
+        }
+        if(v.getId() == R.id.forth_button) {
+            Intent it = new Intent(getActivity().getApplicationContext(), ViewPassActivity.class);
+            it.putExtra("pass_to_show", new PassHandler.Pass(PassHandler.PassType.SMS, new Date(), Util.getRandomCode()));
+            it.putExtra("fake", true);
+            startActivity(it);
         }
     }
 }

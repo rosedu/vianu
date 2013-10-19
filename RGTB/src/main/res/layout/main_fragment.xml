@@ -49,6 +49,17 @@
         android:textSize="25sp"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/third_button"
+        android:text="Fake Message"
+        android:id="@+id/forth_button"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        />
+
 
 
     <TextView
@@ -59,7 +70,7 @@
         android:paddingBottom="30dp"
         android:textSize="30sp"
         android:textColor="@android:color/holo_green_light"
-        android:id="@+id/textView2"
+        android:id="@+id/pointsLabel"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

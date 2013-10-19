@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.Toast;
@@ -43,8 +44,31 @@ public class PassHandler {
     }
 
     public static void obtainPass(Activity ac, PassType pt) {
+        obtainPass(ac, pt, false);
+    }
+
+    public static void obtainPass(Activity ac, PassType pt, boolean showDirectly) {
         if(pt == PassType.NET) {
-            loaded.put(PassType.NET, new Pass(PassType.NET, new Date(), "NETCODE"));
+            if(SettingsFragment.points == 0) {
+                if(showDirectly) {
+                    Intent it = new Intent(ac.getApplicationContext(), ViewPassActivity.class);
+                    it.putExtra("grigoras_mode", true);
+                    ac.startActivity(it);
+                    return;
+                }
+                Toast.makeText(ac.getApplicationContext(), "You do not have any points!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Pass p = new Pass(PassType.NET, new Date(), "NETCODE");
+            loaded.put(PassType.NET, p);
+
+            if(showDirectly) {
+                Intent it = new Intent(ac.getApplicationContext(), ViewPassActivity.class);
+                it.putExtra("pass_to_show", p);
+                it.putExtra("was_fake", true);
+                ac.startActivity(it);
+                return;
+            }
 
             // Create a new fragment and specify the planet to show based on position
             Fragment fragment = NavHandler.getFragmentForMenu(1);
@@ -54,6 +78,7 @@ public class PassHandler {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame, fragment)
                     .commit();
+            SettingsFragment.points--;
             Toast.makeText(ac.getApplicationContext(), "Received shared pass", Toast.LENGTH_SHORT).show();
         }
         if(pt == PassType.SMS) {

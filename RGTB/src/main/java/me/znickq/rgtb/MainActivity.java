@@ -26,6 +26,12 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
 
         PassHandler.init();
 
+        try {
+        SettingsFragment.loadData(this);
+        } catch(Exception ex) {
+            //Meh
+        }
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -44,6 +50,7 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
+
 
     }
 
@@ -74,5 +81,14 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
     public void setTitle(CharSequence title) {
         mTitle = title;
         getActionBar().setTitle(mTitle);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+        SettingsFragment.saveData(this);
+        } catch(Exception ex) {
+        }
     }
 }

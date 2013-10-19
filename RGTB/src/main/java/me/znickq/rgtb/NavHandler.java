@@ -28,6 +28,8 @@ public class NavHandler {
                 return new SMSFragment();
             case 3:
                 return new ControllerFragment();
+            case 4:
+                return new SettingsFragment();
             default:
                 throw new UnsupportedOperationException("Wat r u doin");
 

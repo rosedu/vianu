@@ -5,11 +5,22 @@
 
     <EditText
         android:layout_width="wrap_content"
+        android:hint="Route"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText"
         android:paddingTop="40dp"
+        android:layout_centerHorizontal="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:hint="Aprox. Location"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_below="@+id/editText"
+        android:paddingTop="20dp"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -25,7 +36,19 @@
         android:layout_height="wrap_content"
         android:text="Report"
         android:id="@+id/reportbutton"
-        android:layout_below="@+id/editText"
+        android:layout_below="@+id/editText2"
         android:layout_alignRight="@+id/editText"
         android:layout_marginTop="10dp" />
+
+    <ListView
+        android:clickable="false"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/reportbutton"
+        android:paddingBottom="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/controllerList"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerVertical="true" />
 </RelativeLayout>
