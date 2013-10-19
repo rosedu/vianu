@@ -22,7 +22,7 @@ import java.io.FileOutputStream;
  */
 public class SettingsFragment extends Fragment {
 
-    public static int points = 0;
+    public static int points = 2;
     public static boolean doubleClickEnabled = true;
     public static PassHandler.PassType pt = PassHandler.PassType.NET;
 
@@ -37,7 +37,9 @@ public class SettingsFragment extends Fragment {
 
         doubleClickEnabled = fakeEnabled.isChecked();
 
-        points = Integer.parseInt(debug.getText().toString());
+        if(!(debug.getText().toString().isEmpty())) {
+            points = Integer.parseInt(debug.getText().toString());
+        }
 
         if(fakeSource.getSelectedItemPosition() == 0) {
             pt = PassHandler.PassType.SMS;

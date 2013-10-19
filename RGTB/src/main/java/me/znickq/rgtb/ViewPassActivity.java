@@ -50,7 +50,7 @@ public class ViewPassActivity extends Activity {
         tv.setText(Util.getSmsFor(pass));
 
 
-        tv2.setText("Received "+getReceivedTime(pass.getDate()));
+        tv2.setText("Received "+Util.getTodayTime());
         sButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,11 +68,6 @@ public class ViewPassActivity extends Activity {
         }
 
 
-    }
-
-    private String getReceivedTime(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
-        return dateFormat.format(date);
     }
 
 

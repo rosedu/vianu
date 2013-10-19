@@ -63,7 +63,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         }
         if(v.getId() == R.id.forth_button) {
             Intent it = new Intent(getActivity().getApplicationContext(), ViewPassActivity.class);
-            it.putExtra("pass_to_show", new PassHandler.Pass(PassHandler.PassType.SMS, new Date(), Util.getRandomCode()));
+            it.putExtra("pass_to_show", new PassHandler.Pass(PassHandler.PassType.SMS, Util.getTodayDate(), Util.getRandomCode()));
             it.putExtra("fake", true);
             startActivity(it);
         }

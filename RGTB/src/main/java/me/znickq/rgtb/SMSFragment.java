@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
+
 /**
  * Created by user on 10/19/13.
  */
@@ -48,8 +52,27 @@ public class SMSFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.net_share_button) {
-            SettingsFragment.points+=2;
-            Toast.makeText(getActivity().getApplicationContext(), "Thanks for sharing :)", Toast.LENGTH_SHORT).show();
+
+            final PassHandler.Pass p = PassHandler.getPassForToday(PassHandler.PassType.SMS);
+            if(p.wasShared()) {
+                Toast.makeText(getActivity().getApplicationContext(), "You have already shared this pass!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            ParseObject po = new ParseObject("Pass");
+            po.put("code", p.getCode());
+            po.put("date", p.getDate());
+            po.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e == null) {
+                        p.share();
+                        SettingsFragment.points += 2;
+                        Toast.makeText(getActivity().getApplicationContext(), "Thanks for sharing :)", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Error sharing: "+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
         if(v.getId() == R.id.sms_button) {
             if(isGood) {

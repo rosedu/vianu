@@ -2,10 +2,13 @@ package me.znickq.rgtb;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
@@ -26,7 +29,7 @@ public class Util {
     }
 
     public static String getSmsFor(PassHandler.Pass pass) {
-        return "RATB: Abonamentul Dvs de 1 zi a fost activat. Valabil azi "+ pass.getFormattedDate() + " pe toate liniile urbane RATB. Va dorim calatorie placuta! Cod confirmare: "+pass.getCode();
+        return "RATB: Abonamentul Dvs de 1 zi a fost activat. Valabil azi "+ pass.getDate() + " pe toate liniile urbane RATB. Va dorim calatorie placuta! Cod confirmare: "+pass.getCode();
     }
 
     public static void setButtonText(View rootView, int id, String text) {
@@ -64,5 +67,23 @@ public class Util {
         }
 
         return sb.toString().toUpperCase(Locale.ENGLISH);
+    }
+
+    public static String getTodayTime() {
+            Date d = new Date();
+            return ""+d.getHours()+":"+d.getMinutes();
+
+    }
+
+    public static String getTodayDate() {
+        SimpleDateFormat sdt = new SimpleDateFormat("dd/MM/yyyy");
+        Date d = new Date();
+        return sdt.format(d);
+    }
+
+    public static String getHourForDate(Date createdAt) {
+        SimpleDateFormat sdt = new SimpleDateFormat("HH:mm");
+        //Log.d("rgtb", "Date is "+createdAt);
+        return sdt.format(createdAt);
     }
 }

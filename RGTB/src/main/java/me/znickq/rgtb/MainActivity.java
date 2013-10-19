@@ -11,6 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,12 +28,15 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PassHandler.init();
+        Parse.initialize(this, "8h4BOTLUlhUBGHKOpgwzQmmxKyJOco6xn19dcy5l", "LjzCzA3KgWvP19QBEPXkTkizu6G74CQjcA8naVMP");
+        ParseAnalytics.trackAppOpened(getIntent());
+
+        PassHandler.init(this);
 
         try {
         SettingsFragment.loadData(this);
         } catch(Exception ex) {
-            //Meh
+            ex.printStackTrace();
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -87,8 +94,10 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
     protected void onPause() {
         super.onPause();
         try {
-        SettingsFragment.saveData(this);
+            PassHandler.save(this);
+            SettingsFragment.saveData(this);
         } catch(Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
