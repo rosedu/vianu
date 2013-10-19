@@ -53,10 +53,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             startActivity(i);
         }
         if(v.getId() == R.id.second_button) {
+            PassHandler.obtainPass(getActivity(), PassHandler.PassType.NET);
 
         }
-        if(v.getId() == R.id.second_button) {
-
+        if(v.getId() == R.id.third_button) {
+            PassHandler.obtainPass(getActivity(), PassHandler.PassType.SMS);
         }
     }
 }

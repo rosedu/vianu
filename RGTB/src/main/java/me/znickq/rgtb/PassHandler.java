@@ -1,7 +1,12 @@
 package me.znickq.rgtb;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +18,7 @@ import java.util.Map;
  */
 public class PassHandler {
 
-    private enum PassType {
+    public enum PassType {
         SMS, NET;
     };
 
@@ -31,9 +36,35 @@ public class PassHandler {
         if(isOld) {
             loaded.clear();
         }
+    }
 
-        Pass toAdd = new Pass(PassType.SMS, new Date(), "MADJ57");
-        loaded.put(PassType.SMS, toAdd);
+    public static void obtainPass(Activity ac, PassType pt) {
+        if(pt == PassType.NET) {
+            loaded.put(PassType.NET, new Pass(PassType.NET, new Date(), "NETCODE"));
+
+            // Create a new fragment and specify the planet to show based on position
+            Fragment fragment = NavHandler.getFragmentForMenu(1);
+
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = ac.getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
+            Toast.makeText(ac.getApplicationContext(), "Received shared pass", Toast.LENGTH_SHORT).show();
+        }
+        if(pt == PassType.SMS) {
+            loaded.put(PassType.SMS, new Pass(PassType.SMS, new Date(), "SMSCODE"));
+
+            // Create a new fragment and specify the planet to show based on position
+            Fragment fragment = NavHandler.getFragmentForMenu(2);
+
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = ac.getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
+            Toast.makeText(ac.getApplicationContext(), "Received sms pass", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static Pass getPassForToday() {
