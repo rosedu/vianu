@@ -22,6 +22,8 @@ public class NavHandler {
         switch(whichMenu) {
             case 0:
                 return new MainFragment();
+            case 1:
+                return new SharedFragment();
             case 2:
                 return new SMSFragment();
             case 3:

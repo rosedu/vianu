@@ -28,7 +28,7 @@ public class ControllerFragment extends Fragment {
         buttoncheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
         getActivity().setTitle("Controllers");
