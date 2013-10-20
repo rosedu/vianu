@@ -29,6 +29,10 @@
             android:name="me.znickq.rgtb.ViewPassActivity"
             android:label="@string/title_activity_view_pass" >
         </activity>
+        <activity
+            android:name="me.znickq.rgtb.AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>

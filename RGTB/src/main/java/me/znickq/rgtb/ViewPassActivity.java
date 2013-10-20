@@ -2,6 +2,7 @@ package me.znickq.rgtb;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -57,8 +58,12 @@ public class ViewPassActivity extends Activity {
                 if(!SettingsFragment.doubleClickEnabled) {
                     return;
                 }
+                if(!isFake) {
+                    return;
+                }
                 clicks++;
                 if(clicks == 2) {
+                    //Log.d("rgtb", "Gotcha: " + SettingsFragment.pt);
                     PassHandler.obtainPass(ViewPassActivity.this, SettingsFragment.pt, true);
                 }
             }
