@@ -70,8 +70,8 @@ public class ControllerFragment extends Fragment {
                         }
 
                         if(!toRemove.isEmpty()) {
-                            MassParseDeleter mpd = new MassParseDeleter(toRemove);
-                            mpd.start();
+                            //MassParseDeleter mpd = new MassParseDeleter(toRemove);
+                            //mpd.start();
                         }
 
                         ListView lv = (ListView) rootView.findViewById(R.id.controllerList);
